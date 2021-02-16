@@ -7,6 +7,7 @@ export default function Home() {
   const [ musics, setMusics ] = useState([]);
   const [ albums, setAlbums ] = useState([]);
   const [ artists, setArtists ] = useState([]);
+  const [ slides, setSlides ] = useState([]);
 
   useEffect(async () => {
     let musics_data = await api.get('api/musics');
@@ -17,11 +18,14 @@ export default function Home() {
     console.log('artists_data: ', artists_data.data);
 
     if(!!musics_data)
-      setMusics(musics_data);
-    if(!!albums_data)
-      setAlbums(albums_data);
+      setMusics(musics_data.data);
+    if(!!albums_data) {
+      setAlbums(albums_data.data);
+      setSlides(albums_data.data.filter((_, key) => (key <= 3)));
+    }
     if(!!artists_data)
-      setArtists(artists_data);
+      setArtists(artists_data.data);
+
   },[]);
 
   return (
@@ -76,7 +80,38 @@ export default function Home() {
           </a>
         </ul>
       </nav>
-      <main style={{...styles.right}}></main>
+      <main style={{...styles.right}}>
+        <section style={{...styles.slider}}>
+          <div style={{...styles.slider_buttons}}>
+            {
+              slides.map((element) => ( 
+                <button key={element.id} style={{...styles.slider_button}}>-</button>
+              ))
+            }
+          </div>
+          <ul style={{...styles.slide_list}}>
+            {
+              slides.map((element) => ( 
+                <li 
+                  key={element.id} 
+                  id={`id-${element.id}`} 
+                  style={{...styles.slide, backgroundImage: `url(${element.image_url})`}}
+                >
+                  <div style={{...styles.slide_text}}>
+                    <span style={{...styles.slide_text_span}}>//TRENDING</span>
+                    <h3 style={{...styles.slide_text_album}}>{element.album}</h3>
+                    <strong style={{...styles.slide_text_artist}}>- {element.artist.name}</strong>
+                    <p>
+                      <button style={{...styles.slide_button, ...styles.slide_button_play}}>PLAY <img src="/play.png" alt="play" /></button>
+                      <button style={{...styles.slide_button}}><img src="/share.png" alt="share" /></button>
+                    </p>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </main>
       <footer style={{...styles.footer}}>
         <section 
           style={{
