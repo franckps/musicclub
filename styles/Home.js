@@ -138,6 +138,59 @@ export default {
         paddingRight: 15,
     },
 
+    main: {
+        position: 'relative',
+        width: '100%',
+        minHeight: 50,
+        marginBottom: 80
+    },
+    section: {
+        width: '100%',
+        marginTop: 22,
+        paddingLeft: 22
+    },
+    section_title: {
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    featured_item: {
+        width: 112
+    },
+    featured_items: {
+        listStyle: 'none',
+        display: 'flex',
+        overflowX: 'auto',
+        gap: 22
+    },
+    featured_item_image: {
+        height: 112,
+        width: 112,
+        backgroundImage: '#ccc',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        borderRadius: 3
+    },
+    section_subtitle: {
+        fontSize: 12,
+        whiteSpace: 'nowrap',
+        maxWidth: '100%',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis'
+    },
+
+    tracks: {
+        listStyle: 'none'
+    },
+    track: {
+        width: '100%',
+        display: 'flex',
+        height: 40,
+        alignItems: 'center',
+        padding: '0 15px',
+        borderRadius: 3
+    },
+
     footer: {
         position: 'fixed',
         width: '100%',

@@ -36,7 +36,7 @@ export default function Slider({ slides, time, transition }) {
               key={element.id} 
               style={{
                 ...styles.slider_button, 
-                ...current_slideid === key && {backgroundColor: '#000'},
+                ...current_slideid === key && {backgroundColor: '#3E2AD1'},
               }}
               onClick={() => setCurrentSlideId(key)}
             >-</button>
